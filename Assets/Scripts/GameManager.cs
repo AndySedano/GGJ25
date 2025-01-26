@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        ScoreManager.Instance.StartGame();
         FillAllEnergy();
         InitializeCleanliness();
     }
