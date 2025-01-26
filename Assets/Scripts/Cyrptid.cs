@@ -1,15 +1,14 @@
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Cyrptid : MonoBehaviour
 {
-    void OnMouseEnter()
-    {
-        Debug.Log("Mouse entered");
-    }
+    public CleaningTool tool = CleaningTool.A;
+
 
     void OnMouseOver()
     {
-        Debug.Log("Mouse Over");
+        GameManager.Instance.Cleaning();
     }
 }
