@@ -111,12 +111,10 @@ public class GameManager : MonoBehaviour
     {
         for (int x = 0; x < toolColors.Count; x++)
         {
-  
             if (toolColors[x] == color)
             {
-                FillToolEnergy((CleaningTool) x);
+                FillToolEnergy((CleaningTool)x);
             }
-                
         }
     }
 

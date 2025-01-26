@@ -642,6 +642,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df06031d9db74227af7a311cb527bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toolColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   OnRequiredToolChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4129,6 +4134,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &843751053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 843751055}
+  - component: {fileID: 843751054}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &843751054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843751053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b4e7b423284954a5d77d7c204120d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubble: {fileID: 8259101955967925090, guid: 2cb4cf4de4f1f485fb4f9d6514d52e3e, type: 3}
+  PointA: {fileID: 1367615439}
+  PointB: {fileID: 1344276426}
+  SpawnProbability: 0.2
+  MainBubbleChance: 0.9
+--- !u!4 &843751055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843751053}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -117.2, y: 1.9072361, z: 110.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &845226446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4800,6 +4854,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bubble: {fileID: 8259101955967925090, guid: 2cb4cf4de4f1f485fb4f9d6514d52e3e, type: 3}
+  PointA: {fileID: 0}
+  PointB: {fileID: 0}
   SpawnProbability: 0.005
   MainBubbleChance: 0.2
 --- !u!4 &860297429
@@ -4922,6 +4978,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bubble: {fileID: 8259101955967925090, guid: 2cb4cf4de4f1f485fb4f9d6514d52e3e, type: 3}
+  PointA: {fileID: 0}
+  PointB: {fileID: 0}
   SpawnProbability: 0.005
   MainBubbleChance: 0.1
 --- !u!4 &1163129642
@@ -5572,6 +5630,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336905209}
   m_CullTransparentMesh: 0
+--- !u!1 &1344276426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344276427}
+  m_Layer: 0
+  m_Name: V
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344276427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344276426}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 59.7, y: -62.7, z: 110.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1367615439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367615440}
+  m_Layer: 0
+  m_Name: A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1367615440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367615439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -58.8, y: -55.1, z: 110.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1394379156
 GameObject:
   m_ObjectHideFlags: 0
@@ -7192,6 +7312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bubble: {fileID: 8259101955967925090, guid: 2cb4cf4de4f1f485fb4f9d6514d52e3e, type: 3}
+  PointA: {fileID: 0}
+  PointB: {fileID: 0}
   SpawnProbability: 0.005
   MainBubbleChance: 0.3
 --- !u!4 &1509698862
@@ -8026,6 +8148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bubble: {fileID: 8259101955967925090, guid: 2cb4cf4de4f1f485fb4f9d6514d52e3e, type: 3}
+  PointA: {fileID: 0}
+  PointB: {fileID: 0}
   SpawnProbability: 0.005
   MainBubbleChance: 0.2
 --- !u!4 &1694843201
@@ -10987,3 +11111,6 @@ SceneRoots:
   - {fileID: 845226446}
   - {fileID: 1861187969}
   - {fileID: 725020486}
+  - {fileID: 1367615440}
+  - {fileID: 1344276427}
+  - {fileID: 843751055}

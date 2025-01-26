@@ -1,10 +1,18 @@
 using Unity.Mathematics;
+using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class BubbleSpawner : MonoBehaviour
 {
+    
+    
     [SerializeField]
     private GameObject Bubble;
+
+    [SerializeField] private GameObject PointA;
+    [SerializeField] private GameObject PointB;
 
     [SerializeField]
     public float SpawnProbability = 0.2f;
@@ -23,7 +31,9 @@ public class BubbleSpawner : MonoBehaviour
         // If the random value is less than SpawnProbability, instantiate Bubble
         if (rand < SpawnProbability)
         {
-            Instantiate(Bubble, transform.position, Quaternion.identity);
+            GameObject a = Instantiate(Bubble, Vector3.Lerp(PointA.transform.position, PointB.transform.position, UnityEngine.Random.value), Quaternion.identity);
+            Color newColor = GameManager.Instance.toolColors[UnityEngine.Random.Range(0, GameManager.Instance.toolColors.Count)];
+            a.GetComponent<SpriteRenderer>().color = newColor;
         }
     }
 }
