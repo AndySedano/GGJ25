@@ -9915,10 +9915,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1461338544}
     m_Modifications:
-    - target: {fileID: 1042919006368193761, guid: ef2edb0105e013b40a92c64ab87ab586, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Game Backup
-      objectReference: {fileID: 0}
     - target: {fileID: 2693247632926779488, guid: ef2edb0105e013b40a92c64ab87ab586, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

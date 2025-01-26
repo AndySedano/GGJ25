@@ -57,7 +57,7 @@ public class ScoreManager
         
         LastScoreTime = timeElapsed;
         // check if time elasped is smaller than high score time
-        if (timeElapsed < HighScoreTime && HighScoreTime != TimeSpan.Zero)
+        if (timeElapsed < HighScoreTime || HighScoreTime == TimeSpan.Zero)
         {
             HighScoreTime = timeElapsed;
             HighScoreCount = CryptidsCleaned;
