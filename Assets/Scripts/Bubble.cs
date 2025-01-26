@@ -24,6 +24,7 @@ public class Bubble : MonoBehaviour
     private float frequency;
     private SpriteRenderer SR;
 
+    private AudioSource source;
     void Awake()
     {
         SR = GetComponent<SpriteRenderer>();
@@ -34,6 +35,15 @@ public class Bubble : MonoBehaviour
         amplitude = Random.Range(minAmplitude, maxAmplitude);
         speed = Random.Range(minSpeed, maxSpeed);
         frequency = Random.Range(minFrequency, maxFrequency);
+        
+        source = GetComponent<AudioSource>();
+        if (!source)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+        }
+        source.clip = SoundManager.instance.BubbleSpawn;
+        
+        source.Play();
     }
 
     public void SetColor(Color c)

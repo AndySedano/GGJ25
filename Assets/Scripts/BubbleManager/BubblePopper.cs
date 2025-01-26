@@ -6,10 +6,18 @@ using UnityEngine.EventSystems;
 public class BubblePopper : MonoBehaviour
 {
     [SerializeField] private string layerMaskName;
+
+    private AudioSource source;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        source = GetComponent<AudioSource>();
+        if (!source)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+        }
         
+        source.clip = SoundManager.instance.BubblePop;
     }
 
     void OnClick()
@@ -38,7 +46,9 @@ public class BubblePopper : MonoBehaviour
             Color bColor = hit.transform.gameObject.GetComponent<SpriteRenderer>().color;
             
 			GameManager.Instance.FillEnergyByColor(bColor);
-            
+
+            source.volume *= 35f;
+            source.Play();
         }
     }
 }
