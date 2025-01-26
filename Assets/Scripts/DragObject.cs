@@ -12,7 +12,7 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     private Vector2 startPos;
 
     [SerializeField]
-    CleaningTool tool = CleaningTool.A;
+    CleaningTool tool = CleaningTool.BRUSH;
 
     [SerializeField]
     Image percentageFilledImage;

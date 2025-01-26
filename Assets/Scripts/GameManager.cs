@@ -4,7 +4,7 @@ using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum CleaningTool { A, B, C, D }
+public enum CleaningTool { BRUSH, HOSE, SCRAPER, SPONGE }
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public float timeSinceLastClean = 0f;
     private float timeSinceLastChange = 0f;
-    private CleaningTool requiredTool = CleaningTool.A;
+    private CleaningTool requiredTool = CleaningTool.BRUSH;
 
     public UnityEvent<CleaningTool> OnRequiredToolChanged;
     public UnityEvent<CleaningTool, float> OnCleanlinessUpdated;
@@ -55,10 +55,10 @@ public class GameManager : MonoBehaviour
 
     void InitializeCleanliness()
     {
-        cleanlinessByTool[CleaningTool.A] = 0f;
-        cleanlinessByTool[CleaningTool.B] = 0f;
-        cleanlinessByTool[CleaningTool.C] = 0f;
-        cleanlinessByTool[CleaningTool.D] = 0f;
+        cleanlinessByTool[CleaningTool.BRUSH] = 0f;
+        cleanlinessByTool[CleaningTool.HOSE] = 0f;
+        cleanlinessByTool[CleaningTool.SCRAPER] = 0f;
+        cleanlinessByTool[CleaningTool.SPONGE] = 0f;
     }
 
     void Update()
@@ -95,14 +95,14 @@ public class GameManager : MonoBehaviour
 
     void FillAllEnergy()
     {
-        toolEnergy[CleaningTool.A] = 1f;
-        toolEnergy[CleaningTool.B] = 1f;;
-        toolEnergy[CleaningTool.C] = 1f;;
-        toolEnergy[CleaningTool.D] = 1f;;
-        OnToolEnergyUpdated.Invoke(CleaningTool.A, 1f);
-        OnToolEnergyUpdated.Invoke(CleaningTool.B, 1f);
-        OnToolEnergyUpdated.Invoke(CleaningTool.C, 1f);
-        OnToolEnergyUpdated.Invoke(CleaningTool.D, 1f);
+        toolEnergy[CleaningTool.BRUSH] = 1f;
+        toolEnergy[CleaningTool.HOSE] = 1f;;
+        toolEnergy[CleaningTool.SCRAPER] = 1f;;
+        toolEnergy[CleaningTool.SPONGE] = 1f;;
+        OnToolEnergyUpdated.Invoke(CleaningTool.BRUSH, 1f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.HOSE, 1f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.SCRAPER, 1f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.SPONGE, 1f);
     }
 
     private void AddCleanliness(CleaningTool tool)

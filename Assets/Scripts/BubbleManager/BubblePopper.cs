@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class BubblePopper : MonoBehaviour
 {
@@ -32,12 +30,20 @@ public class BubblePopper : MonoBehaviour
         {
             // Debug.Log("Hit valid: " + hit.transform.name);
             // Destroy the object hit
-            Destroy(hit.transform.gameObject);
+            Bubble b;
+            hit.transform.gameObject.TryGetComponent<Bubble>(out b);
+
+            if(b != null)
+            {
+                b.Explode();
+            }
+
+            // Destroy(hit.transform.gameObject);
             
             // Replenish energy
-            Color bColor = hit.transform.gameObject.GetComponent<SpriteRenderer>().color;
+            // Color bColor = hit.transform.gameObject.GetComponent<SpriteRenderer>().color;
             
-			GameManager.Instance.FillEnergyByColor(bColor);
+			// GameManager.Instance.FillEnergyByColor(bColor);
             
         }
     }

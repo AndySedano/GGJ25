@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bubble : MonoBehaviour
@@ -23,10 +24,14 @@ public class Bubble : MonoBehaviour
     private float speed;
     private float frequency;
     private SpriteRenderer SR;
+    private Animator Anim;
+    private AudioSource AS;
 
     void Awake()
     {
+        Anim = GetComponent<Animator>();
         SR = GetComponent<SpriteRenderer>();
+        AS = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -39,7 +44,24 @@ public class Bubble : MonoBehaviour
     public void SetColor(Color c)
     {
         SR.material.color = c;
-    } 
+    }
+
+    public void Explode()
+    {
+        Anim.SetInteger("rand", UnityEngine.Random.Range(0, 4));
+        Debug.Log(Anim.GetInteger("rand"));
+        Anim.SetTrigger("Explode");
+        AS.Play();
+        GameManager.Instance.AddToolEnergy(tool);
+        Destroy(gameObject.GetComponent<SphereCollider>());
+        StartCoroutine(DestroyWithDelay(0.2f, gameObject));
+    }
+
+    private IEnumerator DestroyWithDelay(float delayInSeconds, GameObject go)
+    {
+        yield return new WaitForSeconds(delayInSeconds);
+        Destroy(go);
+    }
 
     void Update()
     {
@@ -47,5 +69,10 @@ public class Bubble : MonoBehaviour
         float y = speed + Time.deltaTime;
 
         transform.Translate(new Vector3(x, y, 0)); // translate the object with the calculated values
+
+        if (transform.position.y > 150)
+        {
+            Destroy(gameObject);
+        }
     }
 }
