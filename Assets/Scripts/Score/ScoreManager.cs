@@ -51,7 +51,7 @@ public class ScoreManager
         return HighScoreCount;
     }
     
-    public void EndGame(int cryptidsCleaned)
+    public void EndGame()
     {
         timeElapsed = DateTime.Now - startTime;
         Debug.Log("Time Elapsed: " + timeElapsed);
@@ -61,7 +61,7 @@ public class ScoreManager
         if (timeElapsed < HighScoreTime)
         {
             HighScoreTime = timeElapsed;
-            HighScoreCount = cryptidsCleaned;
+            HighScoreCount = CryptidsCleaned;
         }
         
         PauseController.instance.isPaused = 0;

@@ -19,10 +19,12 @@ public class GameManager : MonoBehaviour
     public float timeSinceLastClean = 0f;
     private float timeSinceLastChange = 0f;
     private CleaningTool requiredTool = CleaningTool.BRUSH;
+    private bool restarting = false;
 
     public UnityEvent<CleaningTool> OnRequiredToolChanged;
     public UnityEvent<CleaningTool, float> OnCleanlinessUpdated;
     public UnityEvent<CleaningTool, float> OnToolEnergyUpdated;
+    public UnityEvent OnCryptidCleaned;
 
     public MMProgressBar CleanlinessBar;
     public CleaningTool? activeTool;
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
     public float TimeBetweenActions = 1f; // seconds
     public float TimeBetweenChangeTools = 8f;
     public bool IsMouseOverCryptid = false;
+    public List<GameObject> CyptidsList;
+    public float timeLeft = 600; //seconds
 
 
     private void Awake()
@@ -51,7 +55,33 @@ public class GameManager : MonoBehaviour
         ScoreManager.Instance.StartGame();
         FillAllEnergy();
         InitializeCleanliness();
+        SpawnCryptid();
     }
+
+    void SpawnCryptid()
+    {
+        int selected = UnityEngine.Random.Range(0, CyptidsList.Count);
+
+        foreach (GameObject cryptid in CyptidsList)
+        {
+            cryptid.SetActive(false);
+        }
+
+        CyptidsList[selected].SetActive(true);
+
+    }
+
+    private void CleanNewCryptid()
+    {
+        InitializeCleanliness();
+
+        FillAllEnergy();
+        InitializeCleanliness();
+        SpawnCryptid();
+
+        restarting = false;
+    }
+
 
     void InitializeCleanliness()
     {
@@ -59,6 +89,10 @@ public class GameManager : MonoBehaviour
         cleanlinessByTool[CleaningTool.HOSE] = 0f;
         cleanlinessByTool[CleaningTool.SCRAPER] = 0f;
         cleanlinessByTool[CleaningTool.SPONGE] = 0f;
+        OnCleanlinessUpdated.Invoke(CleaningTool.BRUSH, 0f);
+        OnCleanlinessUpdated.Invoke(CleaningTool.HOSE, 0f);
+        OnCleanlinessUpdated.Invoke(CleaningTool.SCRAPER, 0f);
+        OnCleanlinessUpdated.Invoke(CleaningTool.SPONGE, 0f);
     }
 
     void Update()
@@ -72,6 +106,21 @@ public class GameManager : MonoBehaviour
             timeSinceLastChange = 0;
         }
 
+        if (!restarting && TotalCleanliness() >= 1)
+        {
+            restarting = true;
+            OnCryptidCleaned.Invoke();
+            ScoreManager.Instance.CryptidCleaned();
+            Invoke("CleanNewCryptid", 5);
+        }
+
+        timeLeft -= Time.deltaTime;
+
+        if (timeLeft <= 0)
+        {
+            ScoreManager.Instance.EndGame();
+            
+        }
     }
 
     public CleaningTool RandomCleanTool()
@@ -96,9 +145,9 @@ public class GameManager : MonoBehaviour
     void FillAllEnergy()
     {
         toolEnergy[CleaningTool.BRUSH] = 1f;
-        toolEnergy[CleaningTool.HOSE] = 1f;;
-        toolEnergy[CleaningTool.SCRAPER] = 1f;;
-        toolEnergy[CleaningTool.SPONGE] = 1f;;
+        toolEnergy[CleaningTool.HOSE] = 1f; ;
+        toolEnergy[CleaningTool.SCRAPER] = 1f; ;
+        toolEnergy[CleaningTool.SPONGE] = 1f; ;
         OnToolEnergyUpdated.Invoke(CleaningTool.BRUSH, 1f);
         OnToolEnergyUpdated.Invoke(CleaningTool.HOSE, 1f);
         OnToolEnergyUpdated.Invoke(CleaningTool.SCRAPER, 1f);
@@ -112,7 +161,7 @@ public class GameManager : MonoBehaviour
         {
             foreach (var toolKey in cleanlinessByTool.Keys)
             {
-                if (cleanlinessByTool[toolKey]  < 1)
+                if (cleanlinessByTool[toolKey] < 1)
                 {
                     cleanlinessByTool[toolKey] = Math.Min(cleanlinessByTool[toolKey] + CleanlinessIncreasePerAction, 1f);
                     OnCleanlinessUpdated.Invoke(toolKey, cleanlinessByTool[toolKey]);
@@ -167,9 +216,14 @@ public class GameManager : MonoBehaviour
         return sum / 4;
     }
 
+    public void DeactivateTool()
+    {
+        activeTool = null;
+    }
+
     public void Cleaning()
     {
-        if (activeTool.HasValue && activeTool == requiredTool && timeSinceLastClean >= TimeBetweenActions)
+        if (activeTool == requiredTool && timeSinceLastClean >= TimeBetweenActions)
         {
             if (ToolHasEnergy(activeTool.Value))
             {

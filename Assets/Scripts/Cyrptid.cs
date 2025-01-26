@@ -10,6 +10,16 @@ public class Cyrptid : MonoBehaviour
     [SerializeField]
     SpriteRenderer[] sprites;
 
+    [SerializeField]
+    Sprite blink;
+
+    [SerializeField]
+    Sprite happy;
+
+    Sprite intialSprite;
+
+
+    private SpriteRenderer spriteRend;
     private AudioSource source;
 
     bool cleaningSoundPlaying = false;
@@ -17,36 +27,46 @@ public class Cyrptid : MonoBehaviour
     private void Start()
     {
         source = GetComponent<AudioSource>();
+        spriteRend = GetComponent<SpriteRenderer>();
         if (!source)
         {
             source = gameObject.AddComponent<AudioSource>();
         }
         source.clip = SoundManager.instance.CryptidScrub;
+        intialSprite = spriteRend.sprite;
     }
 
     void OnMouseEnter()
     {
         GameManager.Instance.IsMouseOverCryptid = true;
+        if (GameManager.Instance.activeTool.HasValue)
+        {
+            spriteRend.sprite = blink;
+        }
     }
 
     void OnMouseExit()
     {
         GameManager.Instance.IsMouseOverCryptid = false;
+        spriteRend.sprite = intialSprite;
     }
 
     void OnMouseOver()
     {
-        GameManager.Instance.Cleaning();
+        if (GameManager.Instance.activeTool.HasValue)
+        {
+            GameManager.Instance.Cleaning();
+        }
     }
 
     public void OnCleanlinessUpdated(CleaningTool tool, float value)
     {
         sprites[(int)tool].color = new Color(1f, 1f, 1f, 1f - value);
-        
-        if (!cleaningSoundPlaying)
-        {
-            StartCoroutine(PlayScrub());
-        }
+
+        // if (!cleaningSoundPlaying)
+        // {
+        //     StartCoroutine(PlayScrub());
+        // }
     }
 
     IEnumerator PlayScrub()
