@@ -106,8 +106,8 @@ MonoBehaviour:
   tool: 0
   minAmplitude: 0.01
   maxAmplitude: 0.02
-  minSpeed: 0.001
-  maxSpeed: 0.005
+  minSpeed: 0.003
+  maxSpeed: 0.006
   minFrequency: 1
   maxFrequency: 2
 --- !u!135 &4188380418366606967

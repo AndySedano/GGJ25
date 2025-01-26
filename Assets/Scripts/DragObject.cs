@@ -25,10 +25,6 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         if (this.tool == tool)
         {
             percentageFilledImage.fillAmount = 1 - value;
-            if (value <= 0)
-            {
-                ReturnTool();
-            }
         }
     }
 
@@ -57,7 +53,7 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         
         GameManager.Instance.activeTool = tool;
         source.clip = SoundManager.instance.ScrubSwitch;
-        source.Play();
+        // source.Play();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -84,13 +80,13 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     private void ReturnTool()
     {
         (transform as RectTransform).DOAnchorPos(startPos, 0.1f).SetEase(Ease.OutBack);
-        GameManager.Instance.activeTool = null;
+        GameManager.Instance.DeactivateTool();
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         ReturnTool();
         source.clip = SoundManager.instance.ScrubSwitch;
-        source.Play();
+        // source.Play();
     }
 }

@@ -41,14 +41,14 @@ public class Bubble : MonoBehaviour
         speed = Random.Range(minSpeed, maxSpeed);
         frequency = Random.Range(minFrequency, maxFrequency);
         
-        source = GetComponent<AudioSource>();
-        if (!source)
-        {
-            source = gameObject.AddComponent<AudioSource>();
-        }
-        source.clip = SoundManager.instance.BubbleSpawn;
+        // source = GetComponent<AudioSource>();
+        // if (!source)
+        // {
+        //     source = gameObject.AddComponent<AudioSource>();
+        // }
+        // source.clip = SoundManager.instance.BubbleSpawn;
         
-        source.Play();
+        // source.Play();
     }
 
     public void SetColor(Color c)
@@ -56,10 +56,14 @@ public class Bubble : MonoBehaviour
         SR.material.color = c;
     }
 
+    public void EndGame()
+    {
+    }
+
     public void Explode()
     {
         Anim.SetInteger("rand", UnityEngine.Random.Range(0, 4));
-        Debug.Log(Anim.GetInteger("rand"));
+        // Debug.Log(Anim.GetInteger("rand"));
         Anim.SetTrigger("Explode");
         AS.Play();
         GameManager.Instance.AddToolEnergy(tool);
