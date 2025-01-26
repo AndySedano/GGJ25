@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     // Percentage 0 to 1 
     private Dictionary<CleaningTool, float> toolEnergy = new Dictionary<CleaningTool, float>();
     private Dictionary<CleaningTool, float> cleanlinessByTool = new Dictionary<CleaningTool, float>();
-    public List<Color> toolColors = new List<Color> {Color.red, Color.blue, Color.green, Color.yellow};
+    public List<Color> toolColors = new List<Color> { Color.red, Color.blue, Color.green, Color.yellow };
 
     private float timeSinceLastClean = 0f;
     private float timeSinceLastChange = 0f;
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public MMProgressBar CleanlinessBar;
     public CleaningTool? activeTool;
-    public float EnergyUsePerAction = 0.1f; //percernt
+    public float EnergyUsePerAction = 0.1f; //percent
     public float CleanlinessIncreasePerAction = 0.1f; // percent
     public float EneryGainPerBubble = 0.1f; // percent
     public float TimeBetweenActions = 1f; // seconds
@@ -106,9 +106,26 @@ public class GameManager : MonoBehaviour
 
     private void AddCleanliness(CleaningTool tool)
     {
-        cleanlinessByTool[tool] = Math.Min(cleanlinessByTool[tool] + CleanlinessIncreasePerAction, 4f);
+        // If celanliness is already 1, try another cleanliness index
+        if (cleanlinessByTool[tool] >= 1)
+        {
+            foreach (var toolKey in cleanlinessByTool.Keys)
+            {
+                if (cleanlinessByTool[toolKey]  < 1)
+                {
+                    cleanlinessByTool[toolKey] = Math.Min(cleanlinessByTool[toolKey] + CleanlinessIncreasePerAction, 1f);
+                    OnCleanlinessUpdated.Invoke(toolKey, cleanlinessByTool[toolKey]);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            cleanlinessByTool[tool] = Math.Min(cleanlinessByTool[tool] + CleanlinessIncreasePerAction, 1f);
+            OnCleanlinessUpdated.Invoke(tool, cleanlinessByTool[tool]);
+        }
+
         CleanlinessBar.UpdateBar01(TotalCleanliness());
-        OnCleanlinessUpdated.Invoke(tool, cleanlinessByTool[tool]);
     }
 
     public void AddToolEnergy(CleaningTool tool)

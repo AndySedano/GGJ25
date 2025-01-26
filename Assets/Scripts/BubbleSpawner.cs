@@ -1,9 +1,4 @@
-using DG.Tweening;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.Build.Content;
 using UnityEngine;
-using UnityEngine.Android;
 
 public class BubbleSpawner : MonoBehaviour
 {
