@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     private CleaningTool requiredTool = CleaningTool.A;
 
     public UnityEvent<CleaningTool> OnRequiredToolChanged;
+    public UnityEvent<CleaningTool, float> OnCleanlinessUpdated;
+    public UnityEvent<CleaningTool, float> OnToolEnergyUpdated;
 
     public MMProgressBar CleanlinessBar;
     public CleaningTool? activeTool;
@@ -83,32 +85,40 @@ public class GameManager : MonoBehaviour
             {
                 randomTool = RandomCleanTool();
             }
+            requiredTool = randomTool;
             OnRequiredToolChanged.Invoke(randomTool);
         }
     }
 
     void FillAllEnergy()
     {
-        toolEnergy[CleaningTool.A] = 1f;
-        toolEnergy[CleaningTool.B] = 1f;
-        toolEnergy[CleaningTool.C] = 1f;
-        toolEnergy[CleaningTool.D] = 1f;
+        toolEnergy[CleaningTool.A] = 0.5f;
+        toolEnergy[CleaningTool.B] = 0.5f;
+        toolEnergy[CleaningTool.C] = 0.5f;
+        toolEnergy[CleaningTool.D] = 0.5f;
+        OnToolEnergyUpdated.Invoke(CleaningTool.A, 0.5f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.B, 0.5f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.C, 0.5f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.D, 0.5f);
     }
 
     private void AddCleanliness(CleaningTool tool)
     {
         cleanlinessByTool[tool] = Math.Min(cleanlinessByTool[tool] + CleanlinessIncreasePerAction, 1f);
         CleanlinessBar.UpdateBar01(TotalCleanliness());
+        OnCleanlinessUpdated.Invoke(tool, cleanlinessByTool[tool]);
     }
 
     public void FillToolEnergy(CleaningTool tool)
     {
         toolEnergy[tool] = Math.Max(toolEnergy[tool] + EneryGainPerBubble, 1f);
+        OnToolEnergyUpdated.Invoke(tool, toolEnergy[tool]);
     }
 
     private void UseToolEnergy(CleaningTool tool)
     {
         toolEnergy[tool] = Math.Max(toolEnergy[tool] - EnergyUsePerAction, 0f);
+        OnToolEnergyUpdated.Invoke(tool, toolEnergy[tool]);
     }
 
     public bool ToolHasEnergy(CleaningTool tool)
@@ -123,7 +133,6 @@ public class GameManager : MonoBehaviour
         {
             sum += pair.Value;
         }
-        Debug.Log(sum / 4);
         return sum / 4;
     }
 

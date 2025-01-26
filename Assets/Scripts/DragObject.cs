@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
 public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
@@ -12,19 +11,23 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     private Canvas parentCanvas;
     private Vector2 startPos;
 
-    private Vector2 _centerPoint;
-    private Vector2 _worldCenterPoint => transform.TransformPoint(_centerPoint);
-
-    [SerializeField]
-    UnityEvent WhileCleaning;
-
     [SerializeField]
     CleaningTool tool = CleaningTool.A;
+
+    [SerializeField]
+    Image percentageFilledImage;
+
+    public void OnToolEnergyUpdated(CleaningTool tool, float value)
+    {
+        if(this.tool == tool)
+        {
+            percentageFilledImage.fillAmount = 1 - value;
+        }
+    }
 
     private void Awake()
     {
         _manager = GetComponentInParent<DragManager>();
-        _centerPoint = (transform as RectTransform).rect.center;
         parentCanvas = GetComponentInParent<Canvas>();
         startPos = transform.localPosition;
     }
