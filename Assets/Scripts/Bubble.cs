@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
+	public Color color;
     [SerializeField]
     private float amplitude = 0.1f;
 
@@ -28,6 +29,7 @@ public class Bubble : MonoBehaviour
     {
         tempPos.x = tempX + amplitude * Mathf.Sin(amplitudeSpeed * Time.time);
         tempPos.y += speedUp * Time.deltaTime;
+        tempPos.z = transform.position.z;
         transform.position = tempPos;
     }
 }

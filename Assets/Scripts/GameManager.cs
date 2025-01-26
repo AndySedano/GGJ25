@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     // Percentage 0 to 1 
     private Dictionary<CleaningTool, float> toolEnergy = new Dictionary<CleaningTool, float>();
     private Dictionary<CleaningTool, float> cleanlinessByTool = new Dictionary<CleaningTool, float>();
+    public List<Color> toolColors = new List<Color> {Color.red, Color.blue, Color.green, Color.yellow};
 
     private float timeSinceLastClean = 0f;
     private float timeSinceLastChange = 0f;
@@ -113,6 +114,17 @@ public class GameManager : MonoBehaviour
     {
         toolEnergy[tool] = Math.Max(toolEnergy[tool] + EneryGainPerBubble, 1f);
         OnToolEnergyUpdated.Invoke(tool, toolEnergy[tool]);
+    }
+
+    public void FillEnergyByColor(Color color)
+    {
+        for (int x = 0; x < toolColors.Count; x++)
+        {
+            if (toolColors[x] == color)
+            {
+                FillToolEnergy((CleaningTool)x);
+            }
+        }
     }
 
     private void UseToolEnergy(CleaningTool tool)
