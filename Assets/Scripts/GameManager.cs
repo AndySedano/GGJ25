@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using MoreMountains.Tools;
-using Unity.Mathematics;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Events;
 
 public enum CleaningTool { A, B, C, D }
 
@@ -14,17 +12,23 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return instance; } }
 
     // Percentage 0 to 1 
-    public Dictionary<CleaningTool, float> toolEnergy = new Dictionary<CleaningTool, float>();
-    public Dictionary<CleaningTool, float> cleanlinessByTool = new Dictionary<CleaningTool, float>();
+    private Dictionary<CleaningTool, float> toolEnergy = new Dictionary<CleaningTool, float>();
+    private Dictionary<CleaningTool, float> cleanlinessByTool = new Dictionary<CleaningTool, float>();
 
     private float timeSinceLastClean = 0f;
-    [SerializeField]
-    public float TimeBetweenActions = 1f; // 
+    private float timeSinceLastChange = 0f;
+    private CleaningTool requiredTool = CleaningTool.A;
+
+    public UnityEvent<CleaningTool> requiredToolChanged;
 
     public MMProgressBar CleanlinessBar;
     public CleaningTool? activeTool;
     public float EnergyUsePerAction = 0.1f; //percernt
     public float CleanlinessIncreasePerAction = 0.1f; // percent
+    public float EneryGainPerBubble = 0.1f; // percent
+    public float TimeBetweenActions = 1f; // seconds
+    public float TimeBetweenChangeTools = 8f;
+
 
     private void Awake()
     {
@@ -55,6 +59,30 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         timeSinceLastClean = Mathf.Min(timeSinceLastClean + Time.deltaTime, TimeBetweenActions);
+        timeSinceLastChange = Mathf.Min(timeSinceLastClean + Time.deltaTime, TimeBetweenChangeTools);
+
+        if (timeSinceLastChange >= TimeBetweenChangeTools)
+        {
+            ChangeRequiredTool();
+        }
+
+    }
+
+    private CleaningTool RandomCleanTool()
+    {
+        return (CleaningTool)System.Enum.GetValues(typeof(CleaningTool)).GetValue(new System.Random().Next(0, 4));
+    }
+
+    void ChangeRequiredTool()
+    {
+        if (TotalCleanliness() < 1)
+        {
+            CleaningTool randomTool = RandomCleanTool();
+            while (cleanlinessByTool[randomTool] == 0)
+            {
+                randomTool = RandomCleanTool();
+            }
+        }
     }
 
     void FillAllEnergy()
@@ -65,20 +93,20 @@ public class GameManager : MonoBehaviour
         toolEnergy[CleaningTool.D] = 1f;
     }
 
-    private void AddCleanliness(CleaningTool tool, float value)
+    private void AddCleanliness(CleaningTool tool)
     {
-        cleanlinessByTool[tool] = Math.Min(cleanlinessByTool[tool] + value, 1f);
+        cleanlinessByTool[tool] = Math.Min(cleanlinessByTool[tool] + CleanlinessIncreasePerAction, 1f);
         CleanlinessBar.UpdateBar01(TotalCleanliness());
     }
 
-    private void FillToolEnergy(CleaningTool tool, float value)
+    private void FillToolEnergy(CleaningTool tool)
     {
-        toolEnergy[tool] = Math.Max(toolEnergy[tool] + value, 1f);
+        toolEnergy[tool] = Math.Max(toolEnergy[tool] + EneryGainPerBubble, 1f);
     }
 
-    private void UseToolEnergy(CleaningTool tool, float value)
+    private void UseToolEnergy(CleaningTool tool)
     {
-        toolEnergy[tool] = Math.Max(toolEnergy[tool] - value, 0f);
+        toolEnergy[tool] = Math.Max(toolEnergy[tool] - EnergyUsePerAction, 0f);
     }
 
     public bool ToolHasEnergy(CleaningTool tool)
@@ -93,19 +121,18 @@ public class GameManager : MonoBehaviour
         {
             sum += pair.Value;
         }
-        Debug.Log(sum/4);
+        Debug.Log(sum / 4);
         return sum / 4;
     }
 
     public void Cleaning()
     {
-        if (activeTool.HasValue && timeSinceLastClean >= TimeBetweenActions)
+        if (activeTool.HasValue && activeTool == requiredTool && timeSinceLastClean >= TimeBetweenActions)
         {
-            Debug.Log("Clean Invoked");
             if (ToolHasEnergy(activeTool.Value) && cleanlinessByTool[activeTool.Value] < 1)
             {
-                UseToolEnergy(activeTool.Value, EnergyUsePerAction);
-                AddCleanliness(activeTool.Value, CleanlinessIncreasePerAction);
+                UseToolEnergy(activeTool.Value);
+                AddCleanliness(activeTool.Value);
             }
             timeSinceLastClean = 0;
         }
