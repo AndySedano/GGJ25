@@ -33,6 +33,12 @@ public class BubblePopper : MonoBehaviour
             Debug.Log("Hit valid: " + hit.transform.name);
             // Destroy the object hit
             Destroy(hit.transform.gameObject);
+            
+            // Replenish energy
+            Color bColor = hit.transform.gameObject.GetComponent<Bubble>().color;
+            
+			GameManager.Instance.FillEnergyByColor(bColor);
+            
         }
     }
 }

@@ -642,10 +642,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df06031d9db74227af7a311cb527bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeBetweenActions: 1
+  OnRequiredToolChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 402383073}
+        m_TargetAssemblyTypeName: UI_RequiredTool, Assembly-CSharp
+        m_MethodName: ChangeTool
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   CleanlinessBar: {fileID: 1183663729}
   EnergyUsePerAction: 0.1
   CleanlinessIncreasePerAction: 0.1
+  EneryGainPerBubble: 0.1
+  TimeBetweenActions: 1
+  TimeBetweenChangeTools: 8
 --- !u!4 &242946550
 Transform:
   m_ObjectHideFlags: 0
@@ -1020,7 +1037,7 @@ MonoBehaviour:
     - rid: 1779414934241935542
       type: {class: MMF_Rotation, ns: MoreMountains.Feedbacks, asm: MoreMountains.Tools}
       data:
-        Active: 1
+        Active: 0
         UniqueID: 1775329213
         Label: Rotation
         OriginalLabel: Rotation
@@ -2370,8 +2387,9 @@ GameObject:
   - component: {fileID: 402383070}
   - component: {fileID: 402383072}
   - component: {fileID: 402383071}
+  - component: {fileID: 402383073}
   m_Layer: 5
-  m_Name: LittleCube
+  m_Name: RequiredTool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2389,11 +2407,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1183663728}
+  m_Father: {fileID: 1806337734}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -302, y: 0}
+  m_AnchoredPosition: {x: -302, y: 225}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &402383071
@@ -2434,6 +2452,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402383069}
   m_CullTransparentMesh: 0
+--- !u!114 &402383073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402383069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d55de08911f3430185841fc80a86a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolSprites:
+  - {fileID: 21300002, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
+  - {fileID: 21300012, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
+  - {fileID: 21300008, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
+  - {fileID: 21300006, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
 --- !u!1 &657495795
 GameObject:
   m_ObjectHideFlags: 0
@@ -4933,7 +4968,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 402383070}
   - {fileID: 1336905210}
   - {fileID: 1768463735}
   - {fileID: 352952506}
@@ -8195,6 +8229,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 402383070}
   - {fileID: 1183663728}
   - {fileID: 1421417073}
   - {fileID: 760232718}
@@ -8371,7 +8406,7 @@ MonoBehaviour:
     - rid: 1779414934241935534
       type: {class: MMF_Rotation, ns: MoreMountains.Feedbacks, asm: MoreMountains.Tools}
       data:
-        Active: 1
+        Active: 0
         UniqueID: -224934394
         Label: Rotation
         OriginalLabel: Rotation
@@ -10938,7 +10973,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 242946550}
-  - {fileID: 330585546}
   - {fileID: 832575519}
   - {fileID: 796400674}
   - {fileID: 28576051}
