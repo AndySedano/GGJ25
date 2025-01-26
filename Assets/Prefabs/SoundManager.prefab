@@ -49,7 +49,7 @@ MonoBehaviour:
   ButtonClick: {fileID: 8300000, guid: 7e7f3bf4ec4981d4b9ed35c521910850, type: 3}
   ButtonExit: {fileID: 0}
   ButtonClickRelease: {fileID: 8300000, guid: 96df8f8103180a34bbda941d1f9f5c58, type: 3}
-  MenuMusic: {fileID: 8300000, guid: bd03dcf41dd5cf847a5bb95aea16f073, type: 3}
+  MenuMusic: {fileID: 8300000, guid: c634a29e3bdeffe4ab6728e5ed52edc3, type: 3}
   GameMusic: {fileID: 8300000, guid: 8d0e1690fc3298a4db576e3245344437, type: 3}
   PauseMusic: {fileID: 8300000, guid: 5739578defd4abc44acad4d2a8721164, type: 3}
   PauseMenuEnter: {fileID: 0}

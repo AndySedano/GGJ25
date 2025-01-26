@@ -6,11 +6,11 @@ public class ScoreManager
     DateTime startTime;
     TimeSpan timeElapsed;
 
-    private TimeSpan HighScoreTime;
+    public TimeSpan HighScoreTime;
+    public TimeSpan LastScoreTime;
 
-    private int HighScoreCount;
-
-    private int CryptidsCleaned = 0;
+    public int HighScoreCount;
+    int CryptidsCleaned = 0;
     
     static ScoreManager instance;
     public static ScoreManager Instance
@@ -56,11 +56,15 @@ public class ScoreManager
         timeElapsed = DateTime.Now - startTime;
         Debug.Log("Time Elapsed: " + timeElapsed);
         
+        LastScoreTime = timeElapsed;
         // check if time elasped is smaller than high score time
         if (timeElapsed < HighScoreTime)
         {
             HighScoreTime = timeElapsed;
             HighScoreCount = cryptidsCleaned;
         }
+        
+        PauseController.instance.isPaused = 0;
+        WinScreen.Instance.Win();
     }
 }
