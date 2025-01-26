@@ -54,11 +54,10 @@ public class ScoreManager
     public void EndGame()
     {
         timeElapsed = DateTime.Now - startTime;
-        Debug.Log("Time Elapsed: " + timeElapsed);
         
         LastScoreTime = timeElapsed;
         // check if time elasped is smaller than high score time
-        if (timeElapsed < HighScoreTime)
+        if (timeElapsed < HighScoreTime && HighScoreTime != TimeSpan.Zero)
         {
             HighScoreTime = timeElapsed;
             HighScoreCount = CryptidsCleaned;

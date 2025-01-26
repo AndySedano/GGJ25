@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public float TimeBetweenActions = 1f; // seconds
     public float TimeBetweenChangeTools = 8f;
     public bool IsMouseOverCryptid = false;
-    public List<GameObject> CyptidsList;
+    //public List<GameObject> CyptidsList;
     public float timeLeft = 600; //seconds
 
 
@@ -55,9 +55,10 @@ public class GameManager : MonoBehaviour
         ScoreManager.Instance.StartGame();
         FillAllEnergy();
         InitializeCleanliness();
-        SpawnCryptid();
+        //SpawnCryptid();
     }
 
+    /*
     void SpawnCryptid()
     {
         int selected = UnityEngine.Random.Range(0, CyptidsList.Count);
@@ -69,15 +70,15 @@ public class GameManager : MonoBehaviour
 
         CyptidsList[selected].SetActive(true);
 
-    }
+    }*/
 
-    private void CleanNewCryptid()
+    public void CleanNewCryptid()
     {
         InitializeCleanliness();
 
         FillAllEnergy();
         InitializeCleanliness();
-        SpawnCryptid();
+        //SpawnCryptid();
 
         restarting = false;
     }
@@ -206,7 +207,7 @@ public class GameManager : MonoBehaviour
         return toolEnergy[tool] > 0;
     }
 
-    private float TotalCleanliness()
+    public float TotalCleanliness()
     {
         float sum = 0f;
         foreach (var pair in cleanlinessByTool)

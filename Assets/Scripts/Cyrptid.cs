@@ -18,6 +18,8 @@ public class Cyrptid : MonoBehaviour
 
     Sprite intialSprite;
 
+    public float cleaness = 1f;
+
 
     private SpriteRenderer spriteRend;
     private AudioSource source;
@@ -62,7 +64,7 @@ public class Cyrptid : MonoBehaviour
     public void OnCleanlinessUpdated(CleaningTool tool, float value)
     {
         sprites[(int)tool].color = new Color(1f, 1f, 1f, 1f - value);
-
+        
         // if (!cleaningSoundPlaying)
         // {
         //     StartCoroutine(PlayScrub());

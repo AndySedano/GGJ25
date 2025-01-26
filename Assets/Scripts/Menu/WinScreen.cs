@@ -16,10 +16,12 @@ public class WinScreen : MonoBehaviour
     
     public void Win()
     {
-        LastTime.text = ScoreManager.Instance.LastScoreTime.ToString("F2");
+        LastTime.text = ScoreManager.Instance.LastScoreTime.ToString();
         CryptidsCleaned.text = ScoreManager.Instance.GetCryptidsCleaned().ToString();
         
         BestCryptids.text = ScoreManager.Instance.HighScoreCount.ToString();
-        FastestTime.text = ScoreManager.Instance.GetBestTime().ToString("F2");
+        FastestTime.text = ScoreManager.Instance.GetBestTime().ToString();
+        
+        transform.GetChild(0).gameObject.SetActive(true);
     }
 }
