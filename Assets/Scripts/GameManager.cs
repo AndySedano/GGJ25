@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviour
 
         FillAllEnergy();
         InitializeCleanliness();
-        //SpawnCryptid();
-
+        // SpawnCryptid();
+        CleanlinessBar.UpdateBar01(0);
         restarting = false;
     }
 

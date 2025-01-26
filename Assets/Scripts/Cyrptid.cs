@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using MoreMountains.Feel;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -59,6 +60,13 @@ public class Cyrptid : MonoBehaviour
         {
             GameManager.Instance.Cleaning();
         }
+    }
+    
+    public void OnCryptidCleaned()
+    {
+        spriteRend.sprite = happy;
+        float distance = transform.position.y + 10f;
+        transform.DOMoveY(distance, 1).SetEase(Ease.InOutElastic).SetLoops(2);
     }
 
     public void OnCleanlinessUpdated(CleaningTool tool, float value)

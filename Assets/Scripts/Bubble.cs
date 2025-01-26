@@ -82,6 +82,7 @@ public class Bubble : MonoBehaviour
         float x = Mathf.Sin(frequency * Time.time) * amplitude; // calculate the sine value for X
         float y = speed + Time.deltaTime;
 
+        // transform.Translate(new Vector3(x, y, 0)); // translate the object with the calculated values
         transform.Translate(new Vector3(x, y, 0) * (PauseController.instance.isPaused)); // translate the object with the calculated values
 
         if (transform.position.y > 150)
