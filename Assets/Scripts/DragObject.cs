@@ -19,9 +19,13 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnToolEnergyUpdated(CleaningTool tool, float value)
     {
-        if(this.tool == tool)
+        if (this.tool == tool)
         {
             percentageFilledImage.fillAmount = 1 - value;
+            if (value <= 0)
+            {
+                ReturnTool();
+            }
         }
     }
 
@@ -49,9 +53,14 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    private void ReturnTool()
     {
         (transform as RectTransform).DOAnchorPos(startPos, 0.1f).SetEase(Ease.OutBack);
         GameManager.Instance.activeTool = null;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        ReturnTool();
     }
 }
