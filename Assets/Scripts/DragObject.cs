@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,6 +17,8 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     [SerializeField]
     Image percentageFilledImage;
+
+    private AudioSource source;
 
     public void OnToolEnergyUpdated(CleaningTool tool, float value)
     {
@@ -36,9 +39,20 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         startPos = transform.localPosition;
     }
 
+    private void Start()
+    {
+        source = GetComponent<AudioSource>();
+        if (!source)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+        }
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         GameManager.Instance.activeTool = tool;
+        source.clip = SoundManager.instance.ScrubSwitch;
+        source.Play();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -67,5 +81,7 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public void OnEndDrag(PointerEventData eventData)
     {
         ReturnTool();
+        source.clip = SoundManager.instance.ScrubSwitch;
+        source.Play();
     }
 }

@@ -27,6 +27,7 @@ public class Bubble : MonoBehaviour
     private Animator Anim;
     private AudioSource AS;
 
+    private AudioSource source;
     void Awake()
     {
         Anim = GetComponent<Animator>();
@@ -39,6 +40,15 @@ public class Bubble : MonoBehaviour
         amplitude = Random.Range(minAmplitude, maxAmplitude);
         speed = Random.Range(minSpeed, maxSpeed);
         frequency = Random.Range(minFrequency, maxFrequency);
+        
+        source = GetComponent<AudioSource>();
+        if (!source)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+        }
+        source.clip = SoundManager.instance.BubbleSpawn;
+        
+        source.Play();
     }
 
     public void SetColor(Color c)
