@@ -14,9 +14,9 @@ public class GameManager : MonoBehaviour
     // Percentage 0 to 1 
     private Dictionary<CleaningTool, float> toolEnergy = new Dictionary<CleaningTool, float>();
     private Dictionary<CleaningTool, float> cleanlinessByTool = new Dictionary<CleaningTool, float>();
-    public List<Color> toolColors = new List<Color> {Color.red, Color.blue, Color.green, Color.yellow};
+    public List<Color> toolColors = new List<Color> { Color.red, Color.blue, Color.green, Color.yellow };
 
-    private float timeSinceLastClean = 0f;
+    public float timeSinceLastClean = 0f;
     private float timeSinceLastChange = 0f;
     private CleaningTool requiredTool = CleaningTool.A;
 
@@ -26,11 +26,12 @@ public class GameManager : MonoBehaviour
 
     public MMProgressBar CleanlinessBar;
     public CleaningTool? activeTool;
-    public float EnergyUsePerAction = 0.1f; //percernt
+    public float EnergyUsePerAction = 0.1f; //percent
     public float CleanlinessIncreasePerAction = 0.1f; // percent
     public float EneryGainPerBubble = 0.1f; // percent
     public float TimeBetweenActions = 1f; // seconds
     public float TimeBetweenChangeTools = 8f;
+    public bool IsMouseOverCryptid = false;
 
 
     private void Awake()
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        timeSinceLastClean = Mathf.Min(timeSinceLastClean + Time.deltaTime, TimeBetweenActions);
+        // timeSinceLastClean = Mathf.Min(timeSinceLastClean + Time.deltaTime, TimeBetweenActions);
         timeSinceLastChange = Mathf.Min(timeSinceLastChange + Time.deltaTime, TimeBetweenChangeTools);
 
         if (timeSinceLastChange >= TimeBetweenChangeTools)
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private CleaningTool RandomCleanTool()
+    public CleaningTool RandomCleanTool()
     {
         return (CleaningTool)System.Enum.GetValues(typeof(CleaningTool)).GetValue(new System.Random().Next(0, 4));
     }
@@ -94,21 +95,38 @@ public class GameManager : MonoBehaviour
 
     void FillAllEnergy()
     {
-        toolEnergy[CleaningTool.A] = 0.5f;
-        toolEnergy[CleaningTool.B] = 0.5f;
-        toolEnergy[CleaningTool.C] = 0.5f;
-        toolEnergy[CleaningTool.D] = 0.5f;
-        OnToolEnergyUpdated.Invoke(CleaningTool.A, 0.5f);
-        OnToolEnergyUpdated.Invoke(CleaningTool.B, 0.5f);
-        OnToolEnergyUpdated.Invoke(CleaningTool.C, 0.5f);
-        OnToolEnergyUpdated.Invoke(CleaningTool.D, 0.5f);
+        toolEnergy[CleaningTool.A] = 1f;
+        toolEnergy[CleaningTool.B] = 1f;;
+        toolEnergy[CleaningTool.C] = 1f;;
+        toolEnergy[CleaningTool.D] = 1f;;
+        OnToolEnergyUpdated.Invoke(CleaningTool.A, 1f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.B, 1f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.C, 1f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.D, 1f);
     }
 
     private void AddCleanliness(CleaningTool tool)
     {
-        cleanlinessByTool[tool] = Math.Min(cleanlinessByTool[tool] + CleanlinessIncreasePerAction, 4f);
+        // If celanliness is already 1, try another cleanliness index
+        if (cleanlinessByTool[tool] >= 1)
+        {
+            foreach (var toolKey in cleanlinessByTool.Keys)
+            {
+                if (cleanlinessByTool[toolKey]  < 1)
+                {
+                    cleanlinessByTool[toolKey] = Math.Min(cleanlinessByTool[toolKey] + CleanlinessIncreasePerAction, 1f);
+                    OnCleanlinessUpdated.Invoke(toolKey, cleanlinessByTool[toolKey]);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            cleanlinessByTool[tool] = Math.Min(cleanlinessByTool[tool] + CleanlinessIncreasePerAction, 1f);
+            OnCleanlinessUpdated.Invoke(tool, cleanlinessByTool[tool]);
+        }
+
         CleanlinessBar.UpdateBar01(TotalCleanliness());
-        OnCleanlinessUpdated.Invoke(tool, cleanlinessByTool[tool]);
     }
 
     public void AddToolEnergy(CleaningTool tool)

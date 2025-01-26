@@ -51,6 +51,11 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         {
             transform.position = adjustedPos;
         }
+
+        if (GameManager.Instance.IsMouseOverCryptid)
+        {
+            GameManager.Instance.timeSinceLastClean += eventData.delta.magnitude * Time.deltaTime;
+        }
     }
 
     private void ReturnTool()
