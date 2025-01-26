@@ -18,6 +18,9 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     [SerializeField]
     UnityEvent WhileCleaning;
 
+    [SerializeField]
+    CleaningTool tool = CleaningTool.A;
+
     private void Awake()
     {
         _manager = GetComponentInParent<DragManager>();
@@ -28,6 +31,7 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        GameManager.Instance.activeTool = tool;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -45,5 +49,6 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public void OnEndDrag(PointerEventData eventData)
     {
         (transform as RectTransform).DOAnchorPos(startPos, 0.1f).SetEase(Ease.OutBack);
+        GameManager.Instance.activeTool = null;
     }
 }
