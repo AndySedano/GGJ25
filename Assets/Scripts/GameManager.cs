@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private float timeSinceLastChange = 0f;
     private CleaningTool requiredTool = CleaningTool.A;
 
-    public UnityEvent<CleaningTool> requiredToolChanged;
+    public UnityEvent<CleaningTool> OnRequiredToolChanged;
 
     public MMProgressBar CleanlinessBar;
     public CleaningTool? activeTool;
@@ -59,11 +59,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         timeSinceLastClean = Mathf.Min(timeSinceLastClean + Time.deltaTime, TimeBetweenActions);
-        timeSinceLastChange = Mathf.Min(timeSinceLastClean + Time.deltaTime, TimeBetweenChangeTools);
+        timeSinceLastChange = Mathf.Min(timeSinceLastChange + Time.deltaTime, TimeBetweenChangeTools);
 
         if (timeSinceLastChange >= TimeBetweenChangeTools)
         {
             ChangeRequiredTool();
+            timeSinceLastChange = 0;
         }
 
     }
@@ -78,10 +79,11 @@ public class GameManager : MonoBehaviour
         if (TotalCleanliness() < 1)
         {
             CleaningTool randomTool = RandomCleanTool();
-            while (cleanlinessByTool[randomTool] == 0)
+            while (cleanlinessByTool[randomTool] >= 1)
             {
                 randomTool = RandomCleanTool();
             }
+            OnRequiredToolChanged.Invoke(randomTool);
         }
     }
 
@@ -99,7 +101,7 @@ public class GameManager : MonoBehaviour
         CleanlinessBar.UpdateBar01(TotalCleanliness());
     }
 
-    private void FillToolEnergy(CleaningTool tool)
+    public void FillToolEnergy(CleaningTool tool)
     {
         toolEnergy[tool] = Math.Max(toolEnergy[tool] + EneryGainPerBubble, 1f);
     }
