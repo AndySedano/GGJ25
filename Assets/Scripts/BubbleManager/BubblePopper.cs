@@ -30,12 +30,12 @@ public class BubblePopper : MonoBehaviour
         // Perform the raycast
         if (Physics.Raycast(ray, out RaycastHit hit, 250, mask))
         {
-            Debug.Log("Hit valid: " + hit.transform.name);
+            // Debug.Log("Hit valid: " + hit.transform.name);
             // Destroy the object hit
             Destroy(hit.transform.gameObject);
             
             // Replenish energy
-            Color bColor = hit.transform.gameObject.GetComponent<Bubble>().color;
+            Color bColor = hit.transform.gameObject.GetComponent<SpriteRenderer>().color;
             
 			GameManager.Instance.FillEnergyByColor(bColor);
             

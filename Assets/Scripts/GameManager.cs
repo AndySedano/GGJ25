@@ -105,14 +105,14 @@ public class GameManager : MonoBehaviour
 
     private void AddCleanliness(CleaningTool tool)
     {
-        cleanlinessByTool[tool] = Math.Min(cleanlinessByTool[tool] + CleanlinessIncreasePerAction, 1f);
+        cleanlinessByTool[tool] = Math.Min(cleanlinessByTool[tool] + CleanlinessIncreasePerAction, 4f);
         CleanlinessBar.UpdateBar01(TotalCleanliness());
         OnCleanlinessUpdated.Invoke(tool, cleanlinessByTool[tool]);
     }
 
-    public void FillToolEnergy(CleaningTool tool)
+    public void AddToolEnergy(CleaningTool tool)
     {
-        toolEnergy[tool] = Math.Max(toolEnergy[tool] + EneryGainPerBubble, 1f);
+        toolEnergy[tool] = Math.Min(toolEnergy[tool] + EneryGainPerBubble, 1f);
         OnToolEnergyUpdated.Invoke(tool, toolEnergy[tool]);
     }
 
@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
         {
             if (toolColors[x] == color)
             {
-                FillToolEnergy((CleaningTool)x);
+                AddToolEnergy((CleaningTool)x);
             }
         }
     }
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
     {
         if (activeTool.HasValue && activeTool == requiredTool && timeSinceLastClean >= TimeBetweenActions)
         {
-            if (ToolHasEnergy(activeTool.Value) && cleanlinessByTool[activeTool.Value] < 1)
+            if (ToolHasEnergy(activeTool.Value))
             {
                 UseToolEnergy(activeTool.Value);
                 AddCleanliness(activeTool.Value);

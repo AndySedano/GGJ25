@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor.Build.Content;
@@ -16,10 +17,6 @@ public class BubbleSpawner : MonoBehaviour
 
     [SerializeField]
     public float SpawnProbability = 0.2f;
-    
-    [SerializeField]
-    // This could be different based on your game logic
-    public float MainBubbleChance = 0.9f;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -31,7 +28,9 @@ public class BubbleSpawner : MonoBehaviour
         // If the random value is less than SpawnProbability, instantiate Bubble
         if (rand < SpawnProbability)
         {
-            GameObject a = Instantiate(Bubble, Vector3.Lerp(PointA.transform.position, PointB.transform.position, UnityEngine.Random.value), Quaternion.identity);
+            var spawnPosition = Vector3.Lerp(PointA.transform.position, PointB.transform.position, UnityEngine.Random.value);
+            spawnPosition.y = transform.position.y;
+            GameObject a = Instantiate(Bubble, spawnPosition, Quaternion.identity);
             Color newColor = GameManager.Instance.toolColors[UnityEngine.Random.Range(0, GameManager.Instance.toolColors.Count)];
             a.GetComponent<SpriteRenderer>().color = newColor;
         }
