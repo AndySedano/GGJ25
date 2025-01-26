@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     private Dictionary<CleaningTool, float> cleanlinessByTool = new Dictionary<CleaningTool, float>();
     public List<Color> toolColors = new List<Color> { Color.red, Color.blue, Color.green, Color.yellow };
 
-    private float timeSinceLastClean = 0f;
+    public float timeSinceLastClean = 0f;
     private float timeSinceLastChange = 0f;
     private CleaningTool requiredTool = CleaningTool.A;
 
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public float EneryGainPerBubble = 0.1f; // percent
     public float TimeBetweenActions = 1f; // seconds
     public float TimeBetweenChangeTools = 8f;
+    public bool IsMouseOverCryptid = false;
 
 
     private void Awake()
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        timeSinceLastClean = Mathf.Min(timeSinceLastClean + Time.deltaTime, TimeBetweenActions);
+        // timeSinceLastClean = Mathf.Min(timeSinceLastClean + Time.deltaTime, TimeBetweenActions);
         timeSinceLastChange = Mathf.Min(timeSinceLastChange + Time.deltaTime, TimeBetweenChangeTools);
 
         if (timeSinceLastChange >= TimeBetweenChangeTools)
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private CleaningTool RandomCleanTool()
+    public CleaningTool RandomCleanTool()
     {
         return (CleaningTool)System.Enum.GetValues(typeof(CleaningTool)).GetValue(new System.Random().Next(0, 4));
     }
@@ -94,14 +95,14 @@ public class GameManager : MonoBehaviour
 
     void FillAllEnergy()
     {
-        toolEnergy[CleaningTool.A] = 0.5f;
-        toolEnergy[CleaningTool.B] = 0.5f;
-        toolEnergy[CleaningTool.C] = 0.5f;
-        toolEnergy[CleaningTool.D] = 0.5f;
-        OnToolEnergyUpdated.Invoke(CleaningTool.A, 0.5f);
-        OnToolEnergyUpdated.Invoke(CleaningTool.B, 0.5f);
-        OnToolEnergyUpdated.Invoke(CleaningTool.C, 0.5f);
-        OnToolEnergyUpdated.Invoke(CleaningTool.D, 0.5f);
+        toolEnergy[CleaningTool.A] = 1f;
+        toolEnergy[CleaningTool.B] = 1f;;
+        toolEnergy[CleaningTool.C] = 1f;;
+        toolEnergy[CleaningTool.D] = 1f;;
+        OnToolEnergyUpdated.Invoke(CleaningTool.A, 1f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.B, 1f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.C, 1f);
+        OnToolEnergyUpdated.Invoke(CleaningTool.D, 1f);
     }
 
     private void AddCleanliness(CleaningTool tool)

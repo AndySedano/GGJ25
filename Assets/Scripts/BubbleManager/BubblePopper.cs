@@ -14,7 +14,7 @@ public class BubblePopper : MonoBehaviour
 
     void OnClick()
     {
-        Debug.Log("Clicked");
+        // Debug.Log("Clicked");
 
         LayerMask mask = LayerMask.GetMask(layerMaskName);
 

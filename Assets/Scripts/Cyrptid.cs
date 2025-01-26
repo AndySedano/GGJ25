@@ -1,9 +1,23 @@
+using System;
+using MoreMountains.Feel;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Cyrptid : MonoBehaviour
 {
     [SerializeField]
     SpriteRenderer[] sprites;
+
+
+    void OnMouseEnter()
+    {
+        GameManager.Instance.IsMouseOverCryptid = true;
+    }
+
+    void OnMouseExit()
+    {
+        GameManager.Instance.IsMouseOverCryptid = false;
+    }
 
     void OnMouseOver()
     {

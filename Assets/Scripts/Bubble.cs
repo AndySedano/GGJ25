@@ -1,10 +1,8 @@
-using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
-    public Color color;
+    public CleaningTool tool;
 
     [SerializeField]
     private float minAmplitude = 0.1f;
@@ -21,12 +19,15 @@ public class Bubble : MonoBehaviour
     [SerializeField]
     private float maxFrequency = 1.5f;
 
-    [SerializeField]
     private float amplitude;
-    [SerializeField]
     private float speed;
-    [SerializeField]
     private float frequency;
+    private SpriteRenderer SR;
+
+    void Awake()
+    {
+        SR = GetComponent<SpriteRenderer>();
+    }
 
     void Start()
     {
@@ -34,6 +35,11 @@ public class Bubble : MonoBehaviour
         speed = Random.Range(minSpeed, maxSpeed);
         frequency = Random.Range(minFrequency, maxFrequency);
     }
+
+    public void SetColor(Color c)
+    {
+        SR.material.color = c;
+    } 
 
     void Update()
     {
