@@ -26,7 +26,7 @@ public class SoundManager : MonoBehaviour
     private AudioSource musicSource;
     
     
-    [SerializeField, Tooltip("0 for Menu, 1 for game, 2 for pause")] private int musicToPlay = 0;
+    [SerializeField, Tooltip("0 for Menu, 1 for game, 2 for pause")] public int musicToPlay = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,6 +38,13 @@ public class SoundManager : MonoBehaviour
             musicSource = gameObject.AddComponent<AudioSource>();
         }
 
+        Play();
+
+    }
+
+
+    public void Play()
+    {
         switch (musicToPlay)
         {
             case 0:
@@ -52,7 +59,6 @@ public class SoundManager : MonoBehaviour
         }
         musicSource.loop = true;
         musicSource.Play();
-
     }
     
 }

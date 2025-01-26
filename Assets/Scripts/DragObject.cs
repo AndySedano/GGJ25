@@ -50,13 +50,22 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (PauseController.instance.isPaused > 0)
+        {
+            return;
+        }
+        
         GameManager.Instance.activeTool = tool;
         source.clip = SoundManager.instance.ScrubSwitch;
         source.Play();
     }
 
     public void OnDrag(PointerEventData eventData)
-    {
+    {        
+        if (PauseController.instance.isPaused > 0)
+        {
+            return;
+        }
         Vector2 movePos;
         Vector3 adjustedPos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(_manager.transform as RectTransform, eventData.position, parentCanvas.worldCamera, out movePos);
