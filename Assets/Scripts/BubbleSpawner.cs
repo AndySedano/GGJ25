@@ -31,6 +31,10 @@ public class BubbleSpawner : MonoBehaviour
             var tool = GameManager.Instance.RandomCleanTool();
             Bubble a = Instantiate(Bubble, spawnPosition, Quaternion.identity);
             a.tool = tool;
+            
+            // hacky fix but I *really* don't have time to fix it properly
+            
+            
             a.SetColor(GameManager.Instance.toolColors[(int)tool]);
         }
     }

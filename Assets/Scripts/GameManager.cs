@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     // Percentage 0 to 1 
     private Dictionary<CleaningTool, float> toolEnergy = new Dictionary<CleaningTool, float>();
     private Dictionary<CleaningTool, float> cleanlinessByTool = new Dictionary<CleaningTool, float>();
-    public List<Color> toolColors = new List<Color> { Color.red, Color.blue, Color.green, Color.yellow };
+    public List<Color> toolColors = new List<Color> { Color.red, Color.green, Color.blue, Color.yellow };
 
     public float timeSinceLastClean = 0f;
     private float timeSinceLastChange = 0f;
