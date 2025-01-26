@@ -138,7 +138,7 @@ MonoBehaviour:
   Bubble: {fileID: 368602587605069687, guid: 2cb4cf4de4f1f485fb4f9d6514d52e3e, type: 3}
   PointA: {fileID: 3641872008130896241}
   PointB: {fileID: 2720328101829311520}
-  SpawnProbability: 0.003
+  SpawnProbability: 0.015
 --- !u!212 &4419780405457511402
 SpriteRenderer:
   m_ObjectHideFlags: 0
