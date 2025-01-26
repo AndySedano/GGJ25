@@ -52,14 +52,14 @@ MonoBehaviour:
   MenuMusic: {fileID: 8300000, guid: c634a29e3bdeffe4ab6728e5ed52edc3, type: 3}
   GameMusic: {fileID: 8300000, guid: 8d0e1690fc3298a4db576e3245344437, type: 3}
   PauseMusic: {fileID: 8300000, guid: 5739578defd4abc44acad4d2a8721164, type: 3}
-  PauseMenuEnter: {fileID: 0}
+  PauseMenuEnter: {fileID: 8300000, guid: b9ffcea0b02f67e4ba4115767f19d915, type: 3}
   CryptidScrub: {fileID: 8300000, guid: dba1f1db0de374341846cb7126427f26, type: 3}
   ScrubSwitch: {fileID: 8300000, guid: a98451b99f14c0f4787a34ab7db92660, type: 3}
   ScrubberGrab: {fileID: 8300000, guid: 4bd59a372b37a2148bb7bd17921f85ed, type: 3}
   ScrubberRelease: {fileID: 8300000, guid: 2993345c90e3de845baacc2734d8d89c, type: 3}
   BubblePop: {fileID: 8300000, guid: 439ed90b59b26534ab962651c9e30514, type: 3}
   BubbleSpawn: {fileID: 8300000, guid: 3ec7e01520340bb448730d95a9037391, type: 3}
-  musicToPlay: 0
+  musicToPlay: 1
 --- !u!82 &4503537305061383475
 AudioSource:
   m_ObjectHideFlags: 0
