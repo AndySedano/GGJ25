@@ -808,11 +808,6 @@ MonoBehaviour:
   TimeBetweenActions: 0.5
   TimeBetweenChangeTools: 6
   IsMouseOverCryptid: 0
-  CyptidsList:
-  - {fileID: 823630753}
-  - {fileID: 1408602524}
-  - {fileID: 357240468}
-  - {fileID: 286205926}
   timeLeft: 600
 --- !u!4 &242946550
 Transform:
@@ -1029,6 +1024,7 @@ MonoBehaviour:
   - {fileID: 340188698}
   blink: {fileID: 21300000, guid: a191fb7c9dadf4525a4b552c0e966889, type: 3}
   happy: {fileID: 21300000, guid: dbabba23227a34fbe860023252efdc17, type: 3}
+  cleaness: 1
 --- !u!212 &286205929
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3342,6 +3338,7 @@ MonoBehaviour:
   - {fileID: 243725815}
   blink: {fileID: 21300000, guid: c8040de82404a4b00adf6ce453067231, type: 3}
   happy: {fileID: 21300000, guid: 0b6ef490ac6ac4dc5a770c21eb139c30, type: 3}
+  cleaness: 1
 --- !u!212 &357240471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3875,6 +3872,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1408602528}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &373843116
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4438392484496987864, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
+      propertyPath: m_Name
+      value: DifficultyController
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518424939275111421, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.804102
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518424939275111421, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 22.105997
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518424939275111421, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 277.3651
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518424939275111421, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518424939275111421, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518424939275111421, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518424939275111421, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518424939275111421, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518424939275111421, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518424939275111421, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b2489cdf35e5cee4a83e0260d5f2d43c, type: 3}
 --- !u!1 &386499447
 GameObject:
   m_ObjectHideFlags: 0
@@ -5546,6 +5600,7 @@ MonoBehaviour:
   - {fileID: 861494671}
   blink: {fileID: 21300000, guid: 7433469b9b17b43cca0d12489694c424, type: 3}
   happy: {fileID: 21300000, guid: 7bafd8f37489744fb9138e8cb643de71, type: 3}
+  cleaness: 1
 --- !u!212 &823630756
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9266,6 +9321,7 @@ MonoBehaviour:
   - {fileID: 808795182}
   blink: {fileID: 21300000, guid: 1b91b2b9111824aa5b7eacb63bfac91e, type: 3}
   happy: {fileID: 21300000, guid: d17bbe0548d384470bdf5d4cdbdb1275, type: 3}
+  cleaness: 1
 --- !u!212 &1408602527
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15212,3 +15268,4 @@ SceneRoots:
   - {fileID: 843751055}
   - {fileID: 255109131}
   - {fileID: 1370765558}
+  - {fileID: 373843116}
