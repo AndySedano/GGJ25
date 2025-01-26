@@ -12,31 +12,26 @@ public class BubblePopper : MonoBehaviour
         
     }
 
-    void OnClick ()
+    void OnClick()
     {
         Debug.Log("Clicked");
 
         LayerMask mask = LayerMask.GetMask(layerMaskName);
-        
-        // Get the mouse position
-        Vector3 mousePosition = Mouse.current.position.ReadValue();
-        mousePosition.z = Camera.main.nearClipPlane; // or a custom depth
-        Debug.Log(mousePosition);
 
-        // convert mouse position from screenspace position to world space position
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        Debug.Log( mousePosition);
-        
-        // Get the hit information
-        RaycastHit hit;
-        Physics.Raycast(mousePosition, Vector3.forward, out hit, Mathf.Infinity, mask);
-        // draw the ray
-        Debug.DrawRay(mousePosition, Vector3.forward * 1000, Color.blue, 100);
-        
-        // Remove the bubble from existance
-		if (hit.transform)
-		{
-            Debug.Log("Hit valid");
+        // Get the mouse position in screen space
+        Vector3 mousePosition = Mouse.current.position.ReadValue();
+
+        // Create a ray from the camera through the mouse position
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+
+        // Debug the ray
+        Debug.DrawRay(ray.origin, ray.direction * 250, Color.blue, 2f);
+
+        // Perform the raycast
+        if (Physics.Raycast(ray, out RaycastHit hit, 250, mask))
+        {
+            Debug.Log("Hit valid: " + hit.transform.name);
+            // Destroy the object hit
             Destroy(hit.transform.gameObject);
         }
     }

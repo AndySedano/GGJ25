@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     // Percentage 0 to 1 
     public Dictionary<CleaningTool, float> toolEnergy = new Dictionary<CleaningTool, float>();
     public Dictionary<CleaningTool, float> cleanlinessByTool = new Dictionary<CleaningTool, float>();
-
+    public List<Color> Colors = new List<Color>();
+    
     private float timeSinceLastClean = 0f;
     [SerializeField]
     public float TimeBetweenActions = 1f; // 
