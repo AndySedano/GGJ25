@@ -46,7 +46,7 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (PauseController.instance.isPaused > 0)
+        if (PauseController.instance.isPaused == 0)
         {
             return;
         }
@@ -58,7 +58,7 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {        
-        if (PauseController.instance.isPaused > 0)
+        if (PauseController.instance.isPaused == 0)
         {
             return;
         }

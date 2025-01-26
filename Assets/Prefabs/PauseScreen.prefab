@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 2694990536333212120}
   - component: {fileID: 8418536253709637514}
   - component: {fileID: 204755570483358048}
+  - component: {fileID: 351358867534285242}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -336,7 +337,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 351358867534285242}
         m_TargetAssemblyTypeName: ChangeScenes, Assembly-CSharp
         m_MethodName: SwitchScene
         m_Mode: 5
@@ -358,6 +359,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05e2af11f5790a746a2a63e556e07a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &351358867534285242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2484296495119664623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce02600670990da49b755e556a5b391c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4578312973442176568

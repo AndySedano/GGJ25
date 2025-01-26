@@ -14,8 +14,8 @@ public class BubblePopper : MonoBehaviour
         {
             source = gameObject.AddComponent<AudioSource>();
         }
-        
-        source.clip = SoundManager.instance.BubblePop;
+        if (SoundManager.instance)
+            source.clip = SoundManager.instance.BubblePop;
     }
 
     void OnClick()
