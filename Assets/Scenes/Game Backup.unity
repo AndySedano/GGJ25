@@ -4540,6 +4540,35 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   StartShakingButton: 0
+--- !u!1 &627575677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7793823509388551629, guid: ceca235a29e04002e8684536089c8596, type: 3}
+  m_PrefabInstance: {fileID: 725020486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &627575685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627575677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b600f9141be70e441a9a97261f32f924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogBox: {fileID: 1203373745}
+  dialogOptions:
+  - "A BUG?! I\u2019m not very good with them but this one looks kinda, cute? Wait
+    are you Mothman?! More like mothbaby, haha! Getting you clean right now!"
+  - "WOAAAH, you are a\u2026cute big fella! Let me get you clean right now! That
+    will take a while! "
+  - Is, is that a goat? No what do you call them, a Krampus? How did this creature
+    find my shop? Well, no matter, I get you clean right away!
+  - "Oh, hey there little buddy! What are you? A jackalope? What a cute rabbit you
+    are....with horns? Let\u2019s clean you up and get that fur fluffy again! "
+  dialogText: {fileID: 861097248}
+  arrow: {fileID: 1645248928}
 --- !u!1 &649020956
 GameObject:
   m_ObjectHideFlags: 0
@@ -5017,7 +5046,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7793823509388551629, guid: ceca235a29e04002e8684536089c8596, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 627575685}
   m_SourcePrefab: {fileID: 100100000, guid: ceca235a29e04002e8684536089c8596, type: 3}
 --- !u!1 &736790173
 GameObject:
@@ -7106,6 +7138,17 @@ MonoBehaviour:
         EnableOnPlay: 1
         DisableOnSequenceEnd: 0
         DisableOnStop: 1
+--- !u!114 &861097248 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8428189890959181173, guid: ce906ae3675f87547baa37edb6d55037, type: 3}
+  m_PrefabInstance: {fileID: 932228897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &861494669
 GameObject:
   m_ObjectHideFlags: 0
@@ -7398,7 +7441,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialog
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1434229251315375824, guid: ce906ae3675f87547baa37edb6d55037, type: 3}
+    - {fileID: 8848007876127134248, guid: ce906ae3675f87547baa37edb6d55037, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8111,6 +8156,11 @@ MonoBehaviour:
   BarTarget: 1
   DelayedBarIncreasingProgress: 1
   DelayedBarDecreasingProgress: 1
+--- !u!1 &1203373745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2849873143194811471, guid: ce906ae3675f87547baa37edb6d55037, type: 3}
+  m_PrefabInstance: {fileID: 932228897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1206714768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11376,6 +11426,11 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+--- !u!1 &1645248928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2959360269031754141, guid: ce906ae3675f87547baa37edb6d55037, type: 3}
+  m_PrefabInstance: {fileID: 932228897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1694484255
 GameObject:
   m_ObjectHideFlags: 0
