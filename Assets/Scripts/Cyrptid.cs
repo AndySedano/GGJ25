@@ -24,17 +24,20 @@ public class Cyrptid : MonoBehaviour
 
     private SpriteRenderer spriteRend;
     private AudioSource source;
-
+    
     bool cleaningSoundPlaying = false;
 
     private void Start()
     {
+        
+        
         source = GetComponent<AudioSource>();
         spriteRend = GetComponent<SpriteRenderer>();
         if (!source)
         {
             source = gameObject.AddComponent<AudioSource>();
         }
+        
         source.clip = SoundManager.instance.CryptidScrub;
         intialSprite = spriteRend.sprite;
     }
@@ -73,10 +76,10 @@ public class Cyrptid : MonoBehaviour
     {
         sprites[(int)tool].color = new Color(1f, 1f, 1f, 1f - value);
         
-        // if (!cleaningSoundPlaying)
-        // {
-        //     StartCoroutine(PlayScrub());
-        // }
+         if (!cleaningSoundPlaying)
+        {
+             StartCoroutine(PlayScrub());
+        }
     }
 
     IEnumerator PlayScrub()

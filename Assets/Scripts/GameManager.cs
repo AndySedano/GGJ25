@@ -8,6 +8,7 @@ public enum CleaningTool { BRUSH, HOSE, SCRAPER, SPONGE }
 
 public class GameManager : MonoBehaviour
 {
+    AudioSource source;
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
 
@@ -52,6 +53,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        source = GetComponent<AudioSource>();
+        if (!source)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+        }
+        source.clip = SoundManager.instance.CryptidScrub;
         ScoreManager.Instance.StartGame();
         FillAllEnergy();
         InitializeCleanliness();
