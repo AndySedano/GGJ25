@@ -64,9 +64,9 @@ public class Cyrptid : MonoBehaviour
     
     public void OnCryptidCleaned()
     {
-        spriteRend.sprite = happy;
-        float distance = transform.position.y + 10f;
-        transform.DOMoveY(distance, 1).SetEase(Ease.InOutElastic).SetLoops(2);
+        // spriteRend.sprite = happy;
+        // float distance = transform.position.y + 10f;
+        // transform.DOMoveY(distance, 1).SetEase(Ease.InOutElastic).SetLoops(2);
     }
 
     public void OnCleanlinessUpdated(CleaningTool tool, float value)
