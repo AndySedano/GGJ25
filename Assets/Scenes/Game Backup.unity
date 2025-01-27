@@ -4569,6 +4569,7 @@ MonoBehaviour:
     are....with horns? Let\u2019s clean you up and get that fur fluffy again! "
   dialogText: {fileID: 861097248}
   arrow: {fileID: 1645248928}
+  textSpeed: 0.1
 --- !u!1 &649020956
 GameObject:
   m_ObjectHideFlags: 0

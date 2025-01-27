@@ -9,17 +9,27 @@ public class DialogManager : MonoBehaviour
 {
     public static DialogManager instance;
     
+    AudioSource source;
+    
     [SerializeField] GameObject dialogBox;
     
     [SerializeField] private string[] dialogOptions;
     [SerializeField] TextMeshProUGUI dialogText;
     [SerializeField] private GameObject arrow;
-    float textSpeed = 0.1f;
+    [SerializeField] float textSpeed = 0.025f;
 
     private bool writingDialog = false;
     private int currentCryptid;
     private void Start()
     {
+        source = GetComponent<AudioSource>();
+        if (!source)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+        }
+        
+        source.clip = SoundManager.instance.blurr;
+        
         instance = this;
         PointerArrow();
         
@@ -57,7 +67,10 @@ public class DialogManager : MonoBehaviour
         {
             dialogText.text += dialogToPrint[index];
             index++;
+            
+            source.Play();
             yield return new WaitForSeconds(textSpeed);
+            source.Pause();
         }
 
         writingDialog = false;

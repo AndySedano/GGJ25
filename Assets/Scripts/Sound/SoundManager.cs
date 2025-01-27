@@ -13,6 +13,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip GameMusic;
     public AudioClip PauseMusic;
 
+    public AudioClip blurr;
+
     public AudioClip PauseMenuEnter;
 
     public AudioClip CryptidScrub;

@@ -52,6 +52,7 @@ MonoBehaviour:
   MenuMusic: {fileID: 8300000, guid: c634a29e3bdeffe4ab6728e5ed52edc3, type: 3}
   GameMusic: {fileID: 8300000, guid: 8d0e1690fc3298a4db576e3245344437, type: 3}
   PauseMusic: {fileID: 8300000, guid: 5739578defd4abc44acad4d2a8721164, type: 3}
+  blurr: {fileID: 8300000, guid: 94ac511ebb544fe48bfdb50c8afcae66, type: 3}
   PauseMenuEnter: {fileID: 8300000, guid: b9ffcea0b02f67e4ba4115767f19d915, type: 3}
   CryptidScrub: {fileID: 8300000, guid: dba1f1db0de374341846cb7126427f26, type: 3}
   ScrubSwitch: {fileID: 8300000, guid: a98451b99f14c0f4787a34ab7db92660, type: 3}
