@@ -9,6 +9,8 @@ public class DialogManager : MonoBehaviour
 {
     public static DialogManager instance;
     
+    [SerializeField] GameObject dialogBox;
+    
     [SerializeField] private string[] dialogOptions;
     [SerializeField] TextMeshProUGUI dialogText;
     [SerializeField] private GameObject arrow;
@@ -21,12 +23,12 @@ public class DialogManager : MonoBehaviour
         instance = this;
         PointerArrow();
         
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        dialogBox.gameObject.SetActive(false);
     }
 
     public void PrintTextForCryptid(int cryptid)
     {
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        dialogBox.gameObject.SetActive(true);
 
         StartCoroutine( PrintDialog(dialogOptions[cryptid]) );
         currentCryptid = cryptid;
@@ -61,7 +63,7 @@ public class DialogManager : MonoBehaviour
         writingDialog = false;
     }
 
-    void DoSubmit()
+    void OnClick()
     {
         if (writingDialog)
         {
@@ -70,7 +72,7 @@ public class DialogManager : MonoBehaviour
             return;
         }
         
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        dialogBox.SetActive(false);
         PauseController.instance.isPaused = 1;
     }
 }

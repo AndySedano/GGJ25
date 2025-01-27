@@ -64,13 +64,9 @@ public class Cyrptid : MonoBehaviour
     
     public void OnCryptidCleaned()
     {
-        if (happy)
-            spriteRend.sprite = happy;
-        else
-            Debug.LogError("A CRYPTID IS MISSING THE HAPPY EXPRESSION");
-        
-        float distance = transform.position.y + 10f;
-        transform.DOMoveY(distance, 1).SetEase(Ease.InOutElastic).SetLoops(2);
+        // spriteRend.sprite = happy;
+        // float distance = transform.position.y + 10f;
+        // transform.DOMoveY(distance, 1).SetEase(Ease.InOutElastic).SetLoops(2);
     }
 
     public void OnCleanlinessUpdated(CleaningTool tool, float value)
