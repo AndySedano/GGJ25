@@ -52,8 +52,8 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         }
         
         GameManager.Instance.activeTool = tool;
-        source.clip = SoundManager.instance.ScrubSwitch;
-        // source.Play();
+        source.clip = SoundManager.instance.ScrubberGrab;
+        //source.Play();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -86,7 +86,7 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public void OnEndDrag(PointerEventData eventData)
     {
         ReturnTool();
-        source.clip = SoundManager.instance.ScrubSwitch;
-        // source.Play();
+        source.clip = SoundManager.instance.ScrubberRelease;
+        source.Play();
     }
 }

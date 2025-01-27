@@ -7,7 +7,6 @@ public class CryptidDialogWriter : MonoBehaviour
     void Awake()
     {
         DialogManager.instance.PrintTextForCryptid(id);
-        Debug.Log("WREW");
     }
 
 
