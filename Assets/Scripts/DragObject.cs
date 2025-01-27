@@ -87,6 +87,6 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     {
         ReturnTool();
         source.clip = SoundManager.instance.ScrubberRelease;
-        source.Play();
+        //source.Play();
     }
 }
