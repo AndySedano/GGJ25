@@ -7442,6 +7442,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialog
       objectReference: {fileID: 0}
+    - target: {fileID: 7211012348149472510, guid: ce906ae3675f87547baa37edb6d55037, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -323.2487
+      objectReference: {fileID: 0}
+    - target: {fileID: 7211012348149472510, guid: ce906ae3675f87547baa37edb6d55037, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -161.62436
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1434229251315375824, guid: ce906ae3675f87547baa37edb6d55037, type: 3}
     - {fileID: 8848007876127134248, guid: ce906ae3675f87547baa37edb6d55037, type: 3}

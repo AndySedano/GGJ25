@@ -50,9 +50,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b600f9141be70e441a9a97261f32f924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogBox: {fileID: 0}
   dialogOptions: []
   dialogText: {fileID: 8428189890959181173}
   arrow: {fileID: 2959360269031754141}
+  textSpeed: 0.025
 --- !u!114 &8848007876127134248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,8 +194,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -29, y: -0.000003472}
-  m_SizeDelta: {x: 821.629, y: 126.3404}
+  m_AnchoredPosition: {x: -5.5272, y: -0.64388}
+  m_SizeDelta: {x: 868.5746, y: 152.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1878762698668120657
 CanvasRenderer:
